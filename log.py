@@ -24,9 +24,8 @@ class Logger:
 	""" Path, path to logfile. removeIfExist = If true, deletes the file if it exists. """
 	def __init__(self, path, removeIfExist = False):
 		self.path = path
-		if removeIfExist:
-			if os.path.exists(path):
-				os.remove(path)
+		if removeIfExist and os.path.exists(path):
+			os.remove(path)
 
 	def getType(self, inType):
 		if inType == 1:
@@ -51,7 +50,7 @@ class Logger:
 
 
 if __name__ == "__main__":
-	log = Logger("log.txt")
+	log = Logger("log.txt", True)
 	log.log("Typeless log")
 	log.log("Normal", log.DEFAULT)
 	log.log("Warning text", log.WARNING)
